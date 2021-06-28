@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +22,11 @@ namespace Api.Extensions
                       .AllowAnyHeader();
             });
          });
+      }
+
+      public static void ConfigureSqlite(this IServiceCollection services, IConfiguration configuration)
+      {
+         services.AddDbContext<RepositoryContext>(options => options.UseSqlite(configuration.GetConnectionString("sqliteConnect"), b => b.MigrationsAssembly("Persistence")));
       }
    }
 }
