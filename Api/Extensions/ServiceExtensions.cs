@@ -1,7 +1,9 @@
-﻿using Entities;
+﻿using Contracts;
+using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,11 @@ namespace Api.Extensions
       public static void ConfigureSqlite(this IServiceCollection services, IConfiguration configuration)
       {
          services.AddDbContext<RepositoryContext>(options => options.UseSqlite(configuration.GetConnectionString("sqliteConnect"), b => b.MigrationsAssembly("Persistence")));
+      }
+
+      public static void ConfigureRepositoryManager(this IServiceCollection services)
+      {
+         services.AddScoped<IRepositoryManager, RepositoryManager>();
       }
    }
 }

@@ -29,6 +29,7 @@ namespace Api
 
          services.ConfigureCors();
          services.ConfigureSqlite(Configuration);
+         services.ConfigureRepositoryManager();
 
          services.AddControllers();
          services.AddSwaggerGen(c =>
