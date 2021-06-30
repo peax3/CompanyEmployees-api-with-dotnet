@@ -31,6 +31,8 @@ namespace Api
          services.ConfigureSqlite(Configuration);
          services.ConfigureRepositoryManager();
 
+         services.AddAutoMapper(typeof(Startup));
+
          services.AddControllers();
          services.AddSwaggerGen(c =>
          {
@@ -48,6 +50,7 @@ namespace Api
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api v1"));
          }
 
+         app.ConfigureExceptionHandler();
          app.UseCors("CorsPolicy");
          app.UseRouting();
 
