@@ -13,6 +13,8 @@ namespace Api
       public MappingProfile()
       {
          CreateMap<Company, CompanyDto>();
+         CreateMap<Employee, EmployeeDto>();
       }
    }
 }
+

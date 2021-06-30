@@ -25,6 +25,7 @@ namespace Api.Extensions
 
                if (contextFeature != null)
                {
+                  Console.WriteLine(contextFeature.Error.StackTrace);
                   await context.Response.WriteAsync(
                      JsonSerializer.Serialize(
                         new
