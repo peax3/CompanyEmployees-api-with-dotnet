@@ -16,6 +16,16 @@ namespace Repository
       {
       }
 
+      public void CreateCompany(Company company)
+      {
+         Create(company);
+      }
+
+      public void DeleteCompany(Company company)
+      {
+         Delete(company);
+      }
+
       public async Task<IEnumerable<Company>> GetAllCompanies(bool trackChanges)
       {
          return await FindAll(trackChanges).OrderBy(c => c.Name)

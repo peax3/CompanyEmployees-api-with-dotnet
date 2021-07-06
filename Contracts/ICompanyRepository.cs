@@ -10,5 +10,7 @@ namespace Contracts
    {
       Task<IEnumerable<Company>> GetAllCompanies(bool trackChanges);
       Task<Company> GetCompany(Guid Id, bool trackChanges);
+      void CreateCompany(Company company);
+      void DeleteCompany(Company company);
    }
 }

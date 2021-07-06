@@ -14,6 +14,9 @@ namespace Api
       {
          CreateMap<Company, CompanyDto>();
          CreateMap<Employee, EmployeeDto>();
+         CreateMap<CompanyInputDto, Company>();
+         CreateMap<EmployeeInputDto, Employee>();
+         CreateMap<EmployeeUpdateDto, Employee>();
       }
    }
 }

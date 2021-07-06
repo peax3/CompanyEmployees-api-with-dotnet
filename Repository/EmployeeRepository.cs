@@ -15,6 +15,17 @@ namespace Repository
       {
       }
 
+      public void CreateEmployeeForCompany(Guid companyId, Employee employee)
+      {
+         employee.CompanyId = companyId;
+         Create(employee);
+      }
+
+      public void DeleteEmployee(Employee employee)
+      {
+         Delete(employee);
+      }
+
       public async Task<IEnumerable<Employee>> GetAllEmployees(Guid companyId, bool trackChanges)
       {
          return await FIndByCondition(e => e.CompanyId.Equals(companyId),

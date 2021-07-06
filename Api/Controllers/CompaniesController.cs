@@ -49,5 +49,39 @@ namespace Api.Controllers
 
          return Ok(companyDto);
       }
+
+      [HttpPost]
+      public async Task<IActionResult> CreateCompany([FromBody] CompanyInputDto companyInput)
+      {
+         if (companyInput == null)
+         {
+            return BadRequest("cannot find company object in the request");
+         }
+
+         var company = _mapper.Map<Company>(companyInput);
+         _repositoryManager.Company.CreateCompany(company);
+
+         await _repositoryManager.SaveAsync();
+
+         var companyToReturn = _mapper.Map<CompanyDto>(company);
+
+         return StatusCode(201, new { id = companyToReturn.CompanyId });
+
+      }
+
+      [HttpDelete("{id}")]
+      public async Task<IActionResult> DeleteCompany(Guid id)
+      {
+         var company = await _repositoryManager.Company.GetCompany(id, false);
+         if (company == null)
+         {
+            return NotFound();
+         }
+
+         _repositoryManager.Company.DeleteCompany(company);
+         await _repositoryManager.SaveAsync();
+
+         return NoContent();
+      }
    }
 }
